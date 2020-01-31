@@ -9,10 +9,9 @@ var config = {
   };
   firebase.initializeApp(config);
   
-  var tblUsers = document.getElementById('leaveTable');
+  var tblLeave = document.getElementById('leaveTable');
   var databaseRef = firebase.database().ref('LEAVE/');
   
-  var authRef = firebase.auth();
   var rowIndex = 1;
   
   databaseRef.once('value', function (snapshot) {
@@ -20,29 +19,46 @@ var config = {
       var childKey = childSnapshot.key;
       var childData = childSnapshot.val();
   
-      var row = tblUsers.insertRow(rowIndex);
+      var row = tblLeave.insertRow(rowIndex);
       var celluid = row.insertCell(0);
-      var cellemail = row.insertCell(1);
-      var cellName = row.insertCell(2);
-      var cellBranch = row.insertCell(3);
-      var cellDesig = row.insertCell(4);
-      var cellInst = row.insertCell(5);
-      var cellLev = row.insertCell(6);
-  
-      cellEdit = row.insertCell(7);
-      cellEdit.innerHTML = `<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onClick="onUserEdit(this)" id="btnEdit"><i class="far fa-edit"></i></button>`;
-  
-      cellDelete = row.insertCell(8);
+
+      var cell_user_name = row.insertCell(1);
+      var cell_name_applicant = row.insertCell(2);
+      var cell_type_leave = row.insertCell(3);
+      var cell_address_leave = row.insertCell(4);
+      var cell_department = row.insertCell(5);
+      var cell_desig_applicant = row.insertCell(6);
+      var cell_institute = row.insertCell(7);
+      var cell_from_date = row.insertCell(8);
+      var cell_to_date = row.insertCell(9);
+      var cell_days = row.insertCell(10);
+      var cell_alt_name = row.insertCell(11);
+      var cell_alt_designation = row.insertCell(12);
+      var cell_hod_status = row.insertCell(13);
+      var cell_principal_status = row.insertCell(14);
+      var cell_reason = row.insertCell(15);
+    
+    
+      cellDelete = row.insertCell(16);
       cellDelete.innerHTML = `<button type="button" class="btn btn-danger mb-1" onClick="onUserDelete(this)"><i class="fas fa-trash-alt"></i></button>`;
   
-      celluid.appendChild(document.createTextNode(childKey));
+        celluid.appendChild(document.createTextNode(childKey));
   
-      cellemail.appendChild(document.createTextNode(childData.user_name));
-      cellName.appendChild(document.createTextNode(childData.f_name));
-      cellBranch.appendChild(document.createTextNode(childData.branch));
-      cellDesig.appendChild(document.createTextNode(childData.designation));
-      cellInst.appendChild(document.createTextNode(childData.institute));
-      cellLev.appendChild(document.createTextNode(childData.total_leave));
+        cell_user_name.appendChild(document.createTextNode(childData.user_name));
+        cell_name_applicant.appendChild(document.createTextNode(childData.name_applicant));
+        cell_type_leave.appendChild(document.createTextNode(childData.type_leave));
+        cell_address_leave.appendChild(document.createTextNode(childData.address_leave));
+        cell_department.appendChild(document.createTextNode(childData.department));
+        cell_desig_applicant.appendChild(document.createTextNode(childData.desig_applicant));
+        cell_institute.appendChild(document.createTextNode(childData.institute));
+        cell_from_date.appendChild(document.createTextNode(childData.from_date));
+        cell_to_date.appendChild(document.createTextNode(childData.to_date));
+        cell_days.appendChild(document.createTextNode(childData.days));
+        cell_alt_name.appendChild(document.createTextNode(childData.alt_name));
+        cell_alt_designation.appendChild(document.createTextNode(childData.alt_designation));
+        cell_hod_status.appendChild(document.createTextNode(childData.hod_status));
+        cell_principal_status.appendChild(document.createTextNode(childData.principal_status));
+        cell_reason.appendChild(document.createTextNode(childData.reason));
   
       hideFirstColUserTable();
       rowIndex = rowIndex + 1;
@@ -50,38 +66,7 @@ var config = {
   }
   );
   
-  
-  
-  function onUserEdit(td) {
-    row = td.parentElement.parentElement;
-    var uid = document.getElementById("leaveTable").rows[row.rowIndex].cells.item(0).innerHTML
-    var email = document.getElementById("leaveTable").rows[row.rowIndex].cells.item(1).innerHTML;
-    var name = document.getElementById("leaveTable").rows[row.rowIndex].cells.item(2).innerHTML;
-    var branch = document.getElementById("leaveTable").rows[row.rowIndex].cells.item(3).innerHTML;
-    var desg = document.getElementById("leaveTable").rows[row.rowIndex].cells.item(4).innerHTML;
-    var inst = document.getElementById("leaveTable").rows[row.rowIndex].cells.item(5).innerHTML;
-    var total_leave = document.getElementById("leaveTable").rows[row.rowIndex].cells.item(6).innerHTML;
-  
-    document.getElementById('userEmail').value = email;
-    document.getElementById("userEmail").disabled = true;
-  
-  
-    document.getElementById('userPass').value = uid;
-    document.getElementById("userPass").style.display = "none";
-    document.getElementById("lbluserPass").style.display = "none";
-  
-  
-    document.getElementById('userName').value = name;
-    document.getElementById('userBranch').value = branch;
-    document.getElementById('userDesignation').value = desg;
-    document.getElementById('userInstitute').value = inst;
-    document.getElementById('userTotalLeave').value = total_leave;
-  
-    document.getElementById("btnAddUser").innerHTML = 'Update';
-  
-  }
-  
-  
+
   
   function onUserDelete(td) {
   
@@ -95,77 +80,7 @@ var config = {
       reload_page();
     }
   }
-  function cancle() {
-  
-    document.getElementById('userEmail').value = "";
-    document.getElementById("userEmail").disabled = false;
-  
-    document.getElementById('userPass').value = "";
-    document.getElementById("userPass").style.display = "block";
-    document.getElementById("lbluserPass").style.display = "block";
-  
-    document.getElementById('userName').value = "";
-    document.getElementById('userBranch').value = "";
-    document.getElementById('userDesignation').value = "FACULTY";
-    document.getElementById('userInstitute').value = "";
-    document.getElementById('userTotalLeave').value = "";
-  
-    document.getElementById("btnAddUser").innerHTML = 'Add';
-  
-  }
-  
-  
-  function save_user() {
-  
-    var address_leave = document.getElementById('').value;
-    var alt_designation = document.getElementById('').value;
-    var alt_name = document.getElementById('').value;
-    var days = document.getElementById('').value;
-    var department = document.getElementById('').value;
-    var desig_applicant = document.getElementById('').value;
-    var from_date = document.getElementById('').value;
-    var hod_status = document.getElementById('').value;
-    var institute = document.getElementById('').value;
-    var name_applicant = document.getElementById('').value;
-    var principal_status = document.getElementById('').value;
-    var reason = document.getElementById('').value;
-    var to_date = document.getElementById('').value;
-    var type_leave = document.getElementById('').value;
-    var user_name = document.getElementById('').value;
-  
-  
-   
-    
-  
-      var data = {
-        address_leave: 
-        alt_designation: 
-        alt_name: 
-        days: 
-        department: 
-        desig_applicant: 
-        from_date: 
-        hod_status: 
-        institute: 
-        name_applicant: 
-        principal_status: 
-        reason: 
-        to_date: 
-        type_leave: 
-        user_name: 
-      }
-  
-      var updates = {};
-      updates['/LEAVE/' + pass] = data;   
-      firebase.database().ref().update(updates);
-  
-      alert('User is Updated successfully!');
-      reload_page();
-  
-  
- }
-  
-  
+
   
   function reload_page() {
     window.location.reload();
