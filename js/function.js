@@ -128,7 +128,7 @@ $(document).ready(function(){
 
 function logout (){
   sessionStorage.clear();
-  window.location = "\login.html";
+  window.location = "\index.html";
 }
 
 function login() {
@@ -138,7 +138,7 @@ function login() {
   
   if (user=="admin" && pass=="rahul"){
     sessionStorage.setItem("user", "Admin");
-    window.location = "\index.html";
+    window.location = "\dashboard.html";
   }
   else{
       alert("Incorrect Detail!!!!!");
@@ -147,7 +147,7 @@ function login() {
 
 function loginCheck() {
   if(sessionStorage.getItem("user")!=="Admin"){
-    window.location = "\login.html";
+    window.location = "\index.html";
   }
 }
 
