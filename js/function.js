@@ -77,43 +77,52 @@ $('.popover-dismiss').popover({
   trigger: 'focus'
 });
 
-//disable F12 & Ctr+U
-document.onkeydown = function(e) {
-  if (e.ctrlKey && 
-      (e.keyCode === 67 || 
-       e.keyCode === 86 || 
-       e.keyCode === 85 || 
-       e.keyCode === 117)) {
-      return false;
-  } else {
-      return true;
-  }
-};
-$(document).keypress("u",function(e) {
-if(e.ctrlKey)
-{
-return false;
-}
-else
-{
-return true;
-}
-});
+// //disable F12 & Ctr+U
+// document.onkeydown = function(e) {
+//   if (e.ctrlKey && 
+//       (e.keyCode === 67 || 
+//        e.keyCode === 86 || 
+//        e.keyCode === 85 || 
+//        e.keyCode === 117)) {
+//       return false;
+//   } else {
+//       return true;
+//   }
+// };
+// $(document).keypress("u",function(e) {
+// if(e.ctrlKey)
+// {
+// return false;
+// }
+// else
+// {
+// return true;
+// }
+// });
 
-// With jQuery    disable right click
-$(document).on({
-  "contextmenu": function(e) {
-      console.log("ctx menu button:", e.which); 
+// // With jQuery    disable right click
+// $(document).on({
+//   "contextmenu": function(e) {
+//       console.log("ctx menu button:", e.which); 
 
-      // Stop the context menu
-      e.preventDefault();
-  },
-  "mousedown": function(e) { 
-      console.log("normal mouse down:", e.which); 
-  },
-  "mouseup": function(e) { 
-      console.log("normal mouse up:", e.which); 
-  }
+//       // Stop the context menu
+//       e.preventDefault();
+//   },
+//   "mousedown": function(e) { 
+//       console.log("normal mouse down:", e.which); 
+//   },
+//   "mouseup": function(e) { 
+//       console.log("normal mouse up:", e.which); 
+//   }
+// });
+
+//disable auto model close for add / edit button
+$(document).ready(function(){
+	$('#btnAdd, #btnEdit').click(function(){
+		$('#exampleModal').modal({
+			backdrop: 'static'
+		});
+	}); 
 });
 
 
@@ -142,26 +151,3 @@ function loginCheck() {
   }
 }
 
-function hideFirstColUserTable() {
-  var col = "1";
-  if (isNaN(col) || col == "") {
-      alert("Invalid Column");
-      return;
-  }
-  col = parseInt(col, 10);
-  col = col - 1;
-  var tbl = document.getElementById("userTable");
-  if (tbl != null) {
-      if (col < 0 || col >= tbl.rows.length - 1) {
-          alert("Invalid Column");
-          return;
-      }
-      for (var i = 0; i < tbl.rows.length; i++) {
-          for (var j = 0; j < tbl.rows[i].cells.length; j++) {
-              tbl.rows[i].cells[j].style.display = "";
-              if (j == col)
-                  tbl.rows[i].cells[j].style.display = "none";
-          }
-      }
-  }
-}

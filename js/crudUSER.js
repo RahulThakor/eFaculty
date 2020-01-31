@@ -30,7 +30,7 @@ databaseRef.once('value', function (snapshot) {
     var cellLev = row.insertCell(6);
 
     cellEdit = row.insertCell(7);
-    cellEdit.innerHTML = `<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onClick="onUserEdit(this)"><i class="far fa-edit"></i></button>`;
+    cellEdit.innerHTML = `<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onClick="onUserEdit(this)" id="btnEdit"><i class="far fa-edit"></i></button>`;
 
     cellDelete = row.insertCell(8);
     cellDelete.innerHTML = `<button type="button" class="btn btn-danger mb-1" onClick="onUserDelete(this)"><i class="fas fa-trash-alt"></i></button>`;
@@ -95,7 +95,24 @@ function onUserDelete(td) {
     reload_page();
   }
 }
+function cancle() {
 
+  document.getElementById('userEmail').value = "";
+  document.getElementById("userEmail").disabled = false;
+
+  document.getElementById('userPass').value = "";
+  document.getElementById("userPass").style.display = "block";
+  document.getElementById("lbluserPass").style.display = "block";
+
+  document.getElementById('userName').value = "";
+  document.getElementById('userBranch').value = "";
+  document.getElementById('userDesignation').value = "FACULTY";
+  document.getElementById('userInstitute').value = "";
+  document.getElementById('userTotalLeave').value = "";
+
+  document.getElementById("btnAddUser").innerHTML = 'Add';
+
+}
 
 
 function save_user() {
@@ -175,6 +192,28 @@ function reload_page() {
   window.location.reload();
 }
 
-
+function hideFirstColUserTable() {
+  var col = "1";
+  if (isNaN(col) || col == "") {
+      alert("Invalid Column");
+      return;
+  }
+  col = parseInt(col, 10);
+  col = col - 1;
+  var tbl = document.getElementById("userTable");
+  if (tbl != null) {
+      if (col < 0 || col >= tbl.rows.length - 1) {
+          alert("Invalid Column");
+          return;
+      }
+      for (var i = 0; i < tbl.rows.length; i++) {
+          for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+              tbl.rows[i].cells[j].style.display = "";
+              if (j == col)
+                  tbl.rows[i].cells[j].style.display = "none";
+          }
+      }
+  }
+}
 
 
