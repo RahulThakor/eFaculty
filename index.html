@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link href="img/logo/logo.png" rel="icon">
+  <title>eFaculty - Dashboard</title>
+ 
+  
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="css/main.css" rel="stylesheet">
+        
+  
+  <script>
+  function loginCheck() {
+    if(sessionStorage.getItem("user")!=="Admin"){
+      window.location = "\login.html";
+    }
+  }
+  </script>
+</head>
+
+<body id="page-top" onload="loginCheck()">
+  <div id="wrapper">
+    <!-- Sidebar -->
+    <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <div class="sidebar-brand-icon">
+          <img src="img/logo/logo.png">
+        </div>
+        <div class="sidebar-brand-text mx-3">eFaculty</div>
+      </a>
+      <hr class="sidebar-divider my-0">
+      <li class="nav-item active">
+        <a class="nav-link" href="index.html">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Dashboard</span></a>
+      </li>
+      <hr class="sidebar-divider">
+      
+      <li class="nav-item">
+        <a class="nav-link" href="user.html">
+          <i class="fas fa-user"></i>
+          <span>Users</span>
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link" href="leave.html">
+          <i class="far fa-file-alt"></i>
+          <span>Leave</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="appraisal.html">
+          <i class="fas fa-file-alt"></i>
+          <span>Appraisal</span>
+        </a>
+      </li>
+
+    
+      
+
+    </ul>
+    <!-- Sidebar -->
+
+
+    <div id="content-wrapper" class="d-flex flex-column">
+      <div id="content">
+
+        <!-- TopBar -->
+        <nav class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top">
+          <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <img class="img-profile rounded-circle" src="img/boy.png" style="max-width: 60px">
+                <span class="ml-2 d-none d-lg-inline text-white small">Rahul Thakor</span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+
+                <a class="dropdown-item" href="#" onclick="logout()">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Logout
+                </a>
+              </div>
+            </li>
+          </ul>
+        </nav>
+        <!-- Topbar -->
+
+        <!-- Container Fluid-->
+        <div class="container-fluid" id="container-wrapper">
+          
+            <button type="button" class="btn btn-primary mb-1" onclick="window.location.href='user.html'">User</button>
+            <button type="button" class="btn btn-primary mb-1" onclick="window.location.href='leave.html'">Leave</button>
+            <button type="button" class="btn btn-primary mb-1" onclick="window.location.href='appraisal.html'">Appraisal</button>
+
+            <button type="button" class="btn btn-danger mb-1" onclick="logout()">Logout</button>
+            
+
+        </div>
+        <!---Container Fluid-->
+      </div>
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; 2019 eFaculty
+            </span>
+          </div>
+        </div>
+      </footer>
+      <!-- Footer -->
+    </div>
+  </div>
+
+  <!-- Scroll to top -->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <script src="js/function.js"></script>
+ 
+  <script src="https://kit.fontawesome.com/40331f3cd7.js" crossorigin="anonymous"></script>
+  
+</body>
+
+</html>

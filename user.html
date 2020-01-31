@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link href="img/logo/logo.png" rel="icon">
+  <title>eFaculty - Users</title>
+
+ 
+ 
+  <script src="https://kit.fontawesome.com/40331f3cd7.js" crossorigin="anonymous"></script>
+  
+  <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-app.js"></script>
+
+
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-database.js"></script>
+
+<!-- 
+  <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase.js"></script> -->
+
+
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="css/main.css" rel="stylesheet">
+        
+  
+  <script>
+    
+
+
+    
+    </script>
+
+</head>
+
+
+<body id="page-top" onload="loginCheck();">
+
+  <div id="wrapper">
+    <!-- Sidebar -->
+    <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <div class="sidebar-brand-icon">
+          <img src="img/logo/logo.png">
+        </div>
+        <div class="sidebar-brand-text mx-3">eFaculty</div>
+      </a>
+      <hr class="sidebar-divider my-0">
+      <li class="nav-item active">
+        <a class="nav-link" href="index.html">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Dashboard</span></a>
+      </li>
+      <hr class="sidebar-divider">
+      
+
+      <li class="nav-item">
+        <a class="nav-link" href="user.html">
+          <i class="fas fa-user"></i>
+          <span>Users</span>
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link" href="leave.html">
+          <i class="far fa-file-alt"></i>
+          <span>Leave</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="appraisal.html">
+          <i class="fas fa-file-alt"></i>
+          <span>Appraisal</span>
+        </a>
+      </li>
+
+    
+      
+
+    </ul>
+    <!-- Sidebar -->
+
+
+    <div id="content-wrapper" class="d-flex flex-column">
+      <div id="content">
+
+        <!-- TopBar -->
+        <nav class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top">
+          <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <img class="img-profile rounded-circle" src="img/boy.png" style="max-width: 60px">
+                <span class="ml-2 d-none d-lg-inline text-white small">Rahul Thakor</span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+
+                <a class="dropdown-item" href="login.html">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Logout
+                </a>
+              </div>
+            </li>
+          </ul>
+        </nav>
+        <!-- Topbar -->
+
+        <!-- Container Fluid-->
+        <div class="container-fluid" id="container-wrapper">
+          
+          <!-- DataTable with Hover -->
+          <div class="col-lg-12">
+            <div class="card mb-4">
+              <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">User Details</h6>
+              </div>
+         
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                Add User
+              </button>
+
+              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">User Details</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                     
+                      <form>
+                        <div class="form-group row">
+                          <label for="userName" class="col-sm-3 col-form-label" id="lbluserName">Full Name</label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" id="userName" placeholder="Name">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="userEmail" class="col-sm-3 col-form-label" id="lbluserEmail">Email</label>
+                          <div class="col-sm-9">
+                            <input type="email" class="form-control" id="userEmail" placeholder="Email">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="userPass" class="col-sm-3 col-form-label" id="lbluserPass">Password</label>
+                          <div class="col-sm-9">
+                            <input type="password" class="form-control" id="userPass" placeholder="Password">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="userBranch" class="col-sm-3 col-form-label" id="lbluserBranch">Branch</label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" id="userBranch" placeholder="Branch">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="userDesignation" class="col-sm-3 col-form-label" id="lbluserDesignation">Designation</label>
+                          <div class="col-sm-9">
+                            <select class="form-control" id="userDesignation">
+                              <option>FACULTY</option>
+                              <option>HOD</option>
+                              <option>PRINCIPAL</option>
+                            </select>  
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="userInstitute" class="col-sm-3 col-form-label"  id="lbluserInstitute">Institute</label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" id="userInstitute" placeholder="Institute">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="userTotalLeave" class="col-sm-3 col-form-label" id="lbluserTotalLeave">Total Leave</label>
+                          <div class="col-sm-9">
+                            <input type="number" class="form-control" id="userTotalLeave" placeholder="Total Leave">
+                          </div>
+                        </div>
+                        
+                      </form>
+
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary" onClick="save_user()" id="btnAddUser">Add</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="table-responsive p-3">
+                <table class="table align-items-center table-flush table-hover" id="userTable">
+                  <thead class="thead-light">
+                    <tr>
+                      <th>Uid</th>
+                      <th>Email</th>
+                      <th>Name</th>
+                      <th>Branch</th>
+                      <th>Designation</th>
+                      <th>Institute</th>
+                      <th>Total Leave</th>
+                      <th>Edit</th>
+                      <th>Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!---Container Fluid-->
+      </div>
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; 2019 eFaculty
+            </span>
+          </div>
+        </div>
+      </footer>
+      <!-- Footer -->
+    </div>
+  </div>
+
+  <!-- Scroll to top -->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <script src="js/function.js"></script>
+  <script src="js/crudUSER.js"></script>
+  
+</body>
+
+</html>
