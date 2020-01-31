@@ -77,6 +77,7 @@ $('.popover-dismiss').popover({
   trigger: 'focus'
 });
 
+//disable F12 & Ctr+U
 document.onkeydown = function(e) {
   if (e.ctrlKey && 
       (e.keyCode === 67 || 
@@ -99,7 +100,7 @@ return true;
 }
 });
 
-// With jQuery
+// With jQuery    disable right click
 $(document).on({
   "contextmenu": function(e) {
       console.log("ctx menu button:", e.which); 
