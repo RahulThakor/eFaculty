@@ -26,7 +26,7 @@ a:focus {
   display: flex;
 }
 
-#btnAdd {
+#btnAdd, #tbSearch {
  width: 200px;
  margin-left: 10px;
 }
